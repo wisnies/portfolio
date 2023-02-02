@@ -1,11 +1,14 @@
-import styles from './styles/App.module.scss';
-import img from './assets/image.png';
+import GlobalStyle from './styles/global';
+import Layout from './components/layout/Layout';
+import { AppContextProvider } from './context/appContext';
 
 export const App: React.FC = () => {
   return (
-    <div className={styles.container}>
-      <img src={img} alt='some description' className={styles.image} />
-      <h1 className={styles.title}>{process.env.string}</h1>
-    </div>
+    <>
+      <GlobalStyle />
+      <AppContextProvider>
+        <Layout />
+      </AppContextProvider>
+    </>
   );
 };
