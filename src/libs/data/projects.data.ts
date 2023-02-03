@@ -23,7 +23,8 @@ export const projects: Project[] = [
       'rwd',
     ],
     link: {
-      deployed: 'https://feast-ten.vercel.app/',
+      deployed:
+        'https://feast-6ce2tes3j-mateuszwisniewskikonto-gmailcom.vercel.app/',
       github: 'https://github.com/wisnies/feast',
     },
   },
