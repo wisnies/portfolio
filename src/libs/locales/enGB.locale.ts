@@ -8,5 +8,9 @@ export const enGBLocale: ILocale = {
     stopCanvas: 'stop playing',
     resumeCanvas: 'resume playing',
     subtitle: 'portfolio',
+    homepage: 'homepage',
+  },
+  projectItem: {
+    visit: 'visit',
   },
 };

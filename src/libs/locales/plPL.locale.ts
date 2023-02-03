@@ -8,5 +8,9 @@ export const plPLLocale: ILocale = {
     stopCanvas: 'zatrzymaj grę',
     resumeCanvas: 'wznów grę',
     subtitle: 'portfolio',
+    homepage: 'strona główna',
+  },
+  projectItem: {
+    visit: 'odwiedź',
   },
 };

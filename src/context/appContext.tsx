@@ -1,11 +1,17 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { IAppContext } from '../libs/interfaces/AppContext.interface';
-import { themes } from '../libs/themes';
-import { locales } from '../libs/locales';
-import { Locale } from '../libs/types/locale.type';
-import { Theme } from '../libs/types/theme.type';
 import { ILocaleMeta } from '../libs/interfaces/Locale.interface';
 import { IThemeMeta } from '../libs/interfaces/Theme.interface';
+import { locales } from '../libs/locales';
+import { themes } from '../libs/themes';
+import { Locale } from '../libs/types/locale.type';
+import { Theme } from '../libs/types/theme.type';
 
 export const AppContext = createContext<IAppContext>({} as IAppContext);
 
@@ -46,24 +52,21 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
     if (localeId === locale.id) return;
     if (localeId === 'enGB') setLocale(locales.enGB);
     if (localeId === 'plPL') setLocale(locales.plPl);
-    console.log(locale.id);
   };
-  console.log(locale);
-  return (
-    <AppContext.Provider
-      value={{
-        locale,
-        localeArr,
-        theme,
-        themeArr,
-        changeLocale,
-        changeTheme,
-        isPlaying,
-      }}
-    >
-      {children}
-    </AppContext.Provider>
+
+  const context = useMemo(
+    () => ({
+      locale,
+      localeArr,
+      theme,
+      themeArr,
+      changeLocale,
+      changeTheme,
+      isPlaying,
+    }),
+    [locale, localeArr, theme, themeArr, changeLocale, changeTheme, isPlaying]
   );
+  return <AppContext.Provider value={context}>{children}</AppContext.Provider>;
 };
 
 export const useAppContext = () => useContext(AppContext);

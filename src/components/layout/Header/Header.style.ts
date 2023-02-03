@@ -3,9 +3,21 @@ import styled from 'styled-components';
 import { ITheme } from '../../../libs/interfaces/Theme.interface';
 import { device } from '../../../styles/devices';
 
-export const HContainer = styled.header`
+type HContainerProps = {
+  theme: ITheme;
+  value: number;
+};
+export const HContainer = styled.header<HContainerProps>`
+  position: absolute;
+  top: 0;
+  left: 0;
   padding: 10px;
-  width: 100%;
+  width: fit-content;
+  z-index: 100;
+  transition: ${({ theme }: HContainerProps) => theme.transitions.easeOut};
+  transform: translateY(
+    ${({ value }: HContainerProps) => (value === 4 ? '-100%' : 0)}
+  );
 `;
 export const HBtn = styled.button`
   font-size: 6px;
@@ -131,5 +143,39 @@ export const HNavLink = styled(Link)<HNavLinkProps>`
   }
   @media ${device.desktop} {
     font-size: ${({ value }: HNavLinkProps) => (value === 0 ? 24 : 20)}px;
+  }
+`;
+type HGameNavProps = {
+  theme: ITheme;
+  value: number;
+};
+export const HGameNav = styled.div<HGameNavProps>`
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: ${({ theme }: HContainerProps) => theme.transitions.easeOut};
+  transform: translateY(
+    ${({ value }: HContainerProps) => (value !== 4 ? '-100%' : 0)}
+  );
+  padding: 10px;
+`;
+export const HGameNavLink = styled(Link)`
+  font-size: 14px;
+  font-weight: 400;
+  font-family: ${({ theme }: { theme: ITheme }) => theme.fonts.primary};
+  color: ${({ theme }: { theme: ITheme }) => theme.colors.secondary};
+  text-transform: capitalize;
+  transition: ${({ theme }: { theme: ITheme }) => theme.transitions.easeOut};
+  @media ${device.mobileL} {
+    font-size: 16px;
+  }
+  @media ${device.tablet} {
+    font-size: 18px;
+  }
+  @media ${device.laptopL} {
+    font-size: 20px;
+  }
+  @media ${device.desktop} {
+    font-size: 24px;
   }
 `;

@@ -1,7 +1,7 @@
 {
   "Named import into default export": {
     "prefix": "nim",
-    "body": ["import {$1} from './$1'", "export default $1"],
+    "body": ["import {$1} from './$1'", "", "export default $1"],
     "description": "Named import into default export"
   },
   "Bootstrap styled-components file": {

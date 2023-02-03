@@ -11,5 +11,9 @@ export interface ILocale extends ILocaleMeta {
     stopCanvas: string;
     resumeCanvas: string;
     subtitle: string;
+    homepage: string;
+  };
+  projectItem: {
+    visit: string;
   };
 }
