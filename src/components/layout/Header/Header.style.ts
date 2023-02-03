@@ -114,27 +114,22 @@ type HNavLinkProps = {
   value: number;
 };
 export const HNavLink = styled(Link)<HNavLinkProps>`
-  font-size: ${({ value }: HNavLinkProps) =>
-    value === 0 ? 14 : value === 1 ? 12 : 10}px;
+  font-size: ${({ value }: HNavLinkProps) => (value === 0 ? 14 : 10)}px;
   font-weight: ${({ value }: HNavLinkProps) => (value === 0 ? 700 : 400)};
   font-family: ${({ theme }: { theme: ITheme }) => theme.fonts.primary};
   color: ${({ theme }: { theme: ITheme }) => theme.colors.secondary};
   text-transform: capitalize;
   transition: ${({ theme }: { theme: ITheme }) => theme.transitions.easeOut};
   @media ${device.mobileL} {
-    font-size: ${({ value }: HNavLinkProps) =>
-      value === 0 ? 16 : value === 1 ? 14 : 12}px;
+    font-size: ${({ value }: HNavLinkProps) => (value === 0 ? 16 : 12)}px;
   }
   @media ${device.tablet} {
-    font-size: ${({ value }: HNavLinkProps) =>
-      value === 0 ? 18 : value === 1 ? 16 : 14}px;
+    font-size: ${({ value }: HNavLinkProps) => (value === 0 ? 18 : 14)}px;
   }
   @media ${device.laptopL} {
-    font-size: ${({ value }: HNavLinkProps) =>
-      value === 0 ? 20 : value === 1 ? 18 : 16}px;
+    font-size: ${({ value }: HNavLinkProps) => (value === 0 ? 20 : 16)}px;
   }
   @media ${device.desktop} {
-    font-size: ${({ value }: HNavLinkProps) =>
-      value === 0 ? 24 : value === 1 ? 22 : 20}px;
+    font-size: ${({ value }: HNavLinkProps) => (value === 0 ? 24 : 20)}px;
   }
 `;
