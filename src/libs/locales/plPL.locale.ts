@@ -1,11 +1,12 @@
 import { ILocale } from '../interfaces/Locale.interface';
 
 export const plPLLocale: ILocale = {
-  id: 'pl-PL',
+  id: 'plPL',
   flag: 'pol-flag.png',
   title: 'Tytuł',
-  themes: {
-    dark: 'ciemny',
-    light: 'jasny',
+  header: {
+    stopCanvas: 'zatrzymaj grę',
+    resumeCanvas: 'wznów grę',
+    subtitle: 'portfolio',
   },
 };

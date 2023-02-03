@@ -4,7 +4,7 @@ import { TSBox, TSBtn, TSContainer } from './ThemeSelect.style';
 export const ThemeSelect: React.FC = () => {
   const {
     themeArr,
-    locale: { themes },
+    locale: { id },
     changeTheme,
     theme,
   } = useAppContext();
@@ -13,7 +13,7 @@ export const ThemeSelect: React.FC = () => {
       {themeArr.map((t) => (
         <TSBtn key={t.id} onClick={() => changeTheme(t.id)}>
           <TSBox isActive={t.id === theme.id} />
-          {themes[t.id]}
+          {t.label[id]}
         </TSBtn>
       ))}
     </TSContainer>

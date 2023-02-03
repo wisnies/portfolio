@@ -30,18 +30,19 @@ export const LSContainer = styled.div`
 `;
 
 export const LSBtn = styled.button`
-  margin-left: 10px;
-  height: 12px;
-  width: 24px;
-  color: ${({ theme }: { theme: ITheme }) => theme.colors.textPrimary};
+  margin-left: 20px;
+  height: 14px;
+  width: 28px;
   position: relative;
+  border: 1px solid transparent;
+  border-color: ${({ theme }: { theme: ITheme }) => theme.colors.secondaryAlfa};
   @media ${device.mobileL} {
-    height: 14px;
-    width: 28px;
-  }
-  @media ${device.desktop} {
     height: 18px;
     width: 36px;
+  }
+  @media ${device.desktop} {
+    height: 20px;
+    width: 40px;
   }
 `;
 type LSBtnOverlayProps = {
@@ -56,7 +57,7 @@ export const LSBtnOverlay = styled.div<LSBtnOverlayProps>`
   height: 100%;
   z-index: 10;
   background-color: ${({ theme, isActive }: LSBtnOverlayProps) =>
-    isActive ? 'transparent' : theme.colors.primaryAlfa};
+    isActive ? 'transparent' : theme.colors.secondaryAlfa};
   pointer-events: ${({ isActive }: LSBtnOverlayProps) =>
     isActive ? 'none' : 'all'};
 `;

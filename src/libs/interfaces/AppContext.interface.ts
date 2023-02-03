@@ -10,4 +10,5 @@ export interface IAppContext {
   themeArr: IThemeMeta[];
   changeLocale: (localeId: Locale) => void;
   changeTheme: (themeId: Theme) => void;
+  isPlaying: boolean;
 }

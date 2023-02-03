@@ -18,6 +18,7 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const [localeArr, setLocaleArr] = useState<ILocaleMeta[]>([]);
   const [theme, setTheme] = useState(themes.dark);
   const [themeArr, setThemeArr] = useState<IThemeMeta[]>([]);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   useEffect(() => {
     const lArr = Object.values(locales).map(
@@ -30,6 +31,7 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
     const tArr = Object.values(themes).map(
       (t): IThemeMeta => ({
         id: t.id,
+        label: t.label,
       })
     );
     setThemeArr(tArr);
@@ -42,8 +44,8 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
   };
   const changeLocale = (localeId: Locale) => {
     if (localeId === locale.id) return;
-    if (localeId === 'en-GB') setLocale(locales.enGB);
-    if (localeId === 'pl-PL') setLocale(locales.plPl);
+    if (localeId === 'enGB') setLocale(locales.enGB);
+    if (localeId === 'plPL') setLocale(locales.plPl);
     console.log(locale.id);
   };
   console.log(locale);
@@ -56,6 +58,7 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
         themeArr,
         changeLocale,
         changeTheme,
+        isPlaying,
       }}
     >
       {children}

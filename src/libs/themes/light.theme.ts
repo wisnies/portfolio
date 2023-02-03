@@ -2,6 +2,10 @@ import { ITheme } from '../interfaces/Theme.interface';
 
 export const lightTheme: ITheme = {
   id: 'light',
+  label: {
+    enGB: 'light',
+    plPL: 'jasny',
+  },
   fonts: {
     primary: "'Oswald', sans-serif;",
     decorated: "'Press Start 2P', cursive;",

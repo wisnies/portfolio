@@ -2,6 +2,10 @@ import { ITheme } from '../interfaces/Theme.interface';
 
 export const darkTheme: ITheme = {
   id: 'dark',
+  label: {
+    enGB: 'dark',
+    plPL: 'ciemny',
+  },
   fonts: {
     primary: "'Oswald', sans-serif;",
     decorated: "'Press Start 2P', cursive;",

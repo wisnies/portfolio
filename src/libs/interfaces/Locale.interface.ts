@@ -7,8 +7,9 @@ export interface ILocaleMeta {
 
 export interface ILocale extends ILocaleMeta {
   title: string;
-  themes: {
-    dark: string;
-    light: string;
+  header: {
+    stopCanvas: string;
+    resumeCanvas: string;
+    subtitle: string;
   };
 }
