@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&display=swap');
+
+@import './partials/globals';
+@import './partials/colors';
+@import './partials/mixins';
+@import './partials/sizes';
+@import './partials/typography';
+@import './partials/animations';
+
+.app {
+  width: 100%;
+  height: 100%;
+  border: 1px solid $secondary;
+  &__wrapper {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    padding: 5px;
+    background-color: $primary;
+    position: relative;
+    overflow: hidden;
+    @include responsive($laptop) {
+      padding: 10px;
+    }
+  }
+  &__locale {
+    z-index: 10;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: $primary;
+    border-bottom: 1px solid $secondary;
+    border-left: 1px solid $secondary;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 4px;
+    padding-left: 4px;
+    padding-bottom: 4px;
+    @include responsive($laptop) {
+      top: 10px;
+      right: 10px;
+    }
+  }
+  &__theme {
+    z-index: 10;
+    position: absolute;
+    top: calc(100% - 5px);
+    left: 5px;
+    transform-origin: top left;
+    transform: rotate(270deg);
+    background-color: $primary;
+    border-bottom: 1px solid $secondary;
+    border-right: 1px solid $secondary;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    padding-right: 4px;
+    padding-bottom: 4px;
+    @include responsive($laptop) {
+      top: calc(100% - 10px);
+      left: 10px;
+    }
+  }
+}
+
+.locale {
+  &__btn {
+    $btn: &;
+    position: relative;
+    width: 40px;
+    height: 20px;
+    &_overlay {
+      z-index: 10;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $secondaryAlfa;
+      opacity: 0;
+    }
+    &_img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border: 1px solid black;
+    }
+    &.active {
+      cursor: default !important;
+      #{$btn}_overlay {
+        opacity: 1;
+        pointer-events: none;
+      }
+    }
+    &:hover {
+      #{$btn}_overlay {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.theme {
+  &__btn {
+    $btn: &;
+    display: flex;
+    align-items: center;
+    height: 20px;
+    &_box {
+      height: 18px;
+      width: 18px;
+      border: 1px solid $secondary;
+      margin-right: 10px;
+      @include displayCenter;
+    }
+    &_text {
+      color: $secondary;
+      pointer-events: none;
+    }
+    &.active {
+      #{$btn}_box {
+        &::before {
+          content: '';
+          display: block;
+          width: 12px;
+          height: 12px;
+          background-color: $secondary;
+        }
+      }
+    }
+  }
+}
+
+.header {
+  color: $secondary;
+  width: fit-content;
+  padding: 20px 0 0 5px;
+
+  @include responsive($mobileL) {
+    & h1 {
+      font-size: 40px;
+    }
+    & h2 {
+      font-size: 35px;
+    }
+  }
+}
+
+.nav {
+  width: fit-content;
+  &__list {
+    &_item {
+      font-size: 12px;
+      font-weight: 300;
+      height: 30px;
+      display: flex;
+      align-items: flex-end;
+      text-transform: uppercase;
+      cursor: pointer;
+
+      &.active {
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      &:hover {
+        color: $secondaryAlfa;
+      }
+
+      @include responsive($mobileL) {
+        height: 40px;
+        font-size: 16px;
+        &.active {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+
+.page {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  // width: 0;
+  // height: 0;
+  overflow: hidden;
+  max-width: $tablet;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  opacity: 0;
+  pointer-events: none;
+  width: calc(100% - 40px);
+  height: 60%;
+  padding: 5px;
+  @include responsive($tablet) {
+    height: 65%;
+  }
+  @include responsive($laptop) {
+    height: 90%;
+    width: 100%;
+    padding: 10px;
+    bottom: 10px;
+    right: 10px;
+  }
+
+  &.active {
+    animation: fadeIn 0.2s linear forwards;
+    animation-delay: 0.2s;
+    pointer-events: all;
+  }
+
+  &--home {
+    padding-bottom: 140px !important;
+  }
+  &--about {
+    flex-direction: column;
+    @include responsive($mobileL) {
+      padding-bottom: 140px !important;
+    }
+  }
+  &--projects {
+  }
+  &--contact {
+    width: 100% !important;
+    flex-direction: column;
+    padding-bottom: 140px !important;
+  }
+}
+
+.tag {
+  background-color: $secondary;
+  color: $primary;
+  font-size: 12px;
+  padding: 4px 12px;
+  margin-left: 5px;
+  margin-top: 5px;
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+}
+
+.copy {
+  &__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  &__btn {
+    margin-left: 10px;
+    width: 26px;
+    height: 26px;
+    background-color: white;
+    border: 1px solid $secondary;
+    position: relative;
+    & img {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+}

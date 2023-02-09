@@ -1,0 +1,71 @@
+.title {
+  $self: &;
+  &--page {
+    color: $secondary;
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  &--name {
+    color: $secondary;
+    font-size: 25px;
+    font-weight: 300;
+  }
+  &--subpage {
+    color: $secondary;
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 10px;
+  }
+
+  @include responsive($mobileL) {
+    #{$self}--page {
+      font-size: 40px;
+    }
+    #{$self}--name {
+      font-size: 35px;
+    }
+    #{$self}--subpage {
+      font-size: 35px;
+    }
+  }
+}
+.text {
+  color: $secondary;
+  font-size: 12px;
+  width: 70%;
+  text-align: right;
+  font-weight: 300;
+  @include responsive($mobileL) {
+    font-size: 16px;
+  }
+}
+
+.link {
+  &--github {
+    font-size: 14px;
+    font-weight: 300;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: $secondary;
+
+    &:hover {
+      color: $secondaryAlfa;
+    }
+
+    @include responsive($mobileL) {
+      font-size: 18px;
+    }
+  }
+  &--contact {
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: $secondary;
+    @include responsive($mobileL) {
+      font-size: 16px;
+    }
+  }
+}

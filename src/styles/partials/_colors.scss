@@ -1,0 +1,17 @@
+:root {
+  --primary: black;
+  --primaryAlfa: rgba(0, 0, 0, 0.8);
+  --secondary: white;
+  --secondaryAlfa: rgba(255, 255, 255, 0.8);
+}
+body.light {
+  --primary: white;
+  --primaryAlfa: rgba(255, 255, 255, 0.8);
+  --secondary: black;
+  --secondaryAlfa: rgba(0, 0, 0, 0.8);
+}
+
+$primary: var(--primary);
+$primaryAlfa: var(--primaryAlfa);
+$secondary: var(--secondary);
+$secondaryAlfa: var(--secondaryAlfa);
