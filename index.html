@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mateusz Wiśniewski | Portfolio</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <style>
+      .loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        display: flex;
+        transition: opacity 0.3s ease;
+      }
+      .bold {
+        font-weight: 400;
+      }
+      span {
+        font-weight: 300;
+      }
+    </style>
+  </head>
+  <body class="dark">
+    <div class="loading">
+      <span>Mateusz Wiśniewski</span><span class="bold"> Portfolio</span>
+    </div>
+    <div class="app__wrapper">
+      <main class="app">
+        <header class="header">
+          <h2 class="title--name">Mateusz Wiśniewski</h2>
+          <h1 class="title--page" id="pageTitle">Portfolio</h1>
+          <nav class="nav">
+            <ul class="nav__list">
+              <li class="nav__list_item active" data-target="home">home</li>
+              <li class="nav__list_item" data-target="about">about</li>
+              <li class="nav__list_item" data-target="projects">projects</li>
+              <li class="nav__list_item" data-target="contact">contact</li>
+            </ul>
+          </nav>
+        </header>
+        <section class="page page--home active" data-page="home">
+          <a
+            href="https://github.com/wisnies"
+            target="_blank"
+            rel="norefferer"
+            class="link--github"
+            >github</a
+          >
+        </section>
+        <section class="page page--about" data-page="about">
+          <h5 class="title--subpage">Who am I</h5>
+          <p class="text">
+            Self tought, ambition driven developer. Always lookig learn and
+            improve.
+          </p>
+          <h5 class="title--subpage">What I can do</h5>
+          <div class="tag__container">
+            <span class="tag">html</span>
+            <span class="tag">css</span>
+            <span class="tag">sass</span>
+            <span class="tag">js</span>
+            <span class="tag">typescript</span>
+            <span class="tag">React.js</span>
+            <span class="tag">Next.js</span>
+            <span class="tag">Prisma</span>
+            <span class="tag">Mongoose</span>
+            <span class="tag">Express.js</span>
+            <span class="tag">mongodb</span>
+            <span class="tag">postgrsql</span>
+            <span class="tag">sql</span>
+            <span class="tag">docker</span>
+          </div>
+        </section>
+        <section class="page page--projects" data-page="projects"></section>
+        <section class="page page--contact" data-page="contact">
+          <h5 class="title--subpage">Contact me</h5>
+          <div class="copy__container">
+            <a
+              class="link--contact"
+              href="mailto:mateusz.wisniewski.konto@gmail.com"
+              class="link"
+              >mateusz.wisniewski.konto@gmail.com</a
+            >
+            <button class="copy__btn">
+              <img src="assets/copy.png" alt="copy icon" />
+            </button>
+          </div>
+          <div class="copy__container">
+            <a class="link--contact" href="tel:+48692651419" class="link"
+              >+48 692 651 410</a
+            >
+            <button class="copy__btn">
+              <img src="assets/copy.png" alt="copy icon" />
+            </button>
+          </div>
+
+          <a
+            href="https://github.com/wisnies"
+            target="_blank"
+            rel="norefferer"
+            class="link--github"
+            >github</a
+          >
+        </section>
+      </main>
+      <div class="app__locale">
+        <button type="button" class="locale__btn active">
+          <div class="locale__btn_overlay"></div>
+          <img
+            src="assets/en-flag.png"
+            alt="British flag"
+            class="locale__btn_img"
+          />
+        </button>
+        <button type="button" class="locale__btn">
+          <div class="locale__btn_overlay"></div>
+          <img
+            src="assets/pl-flag.png"
+            alt="Polish flag"
+            class="locale__btn_img"
+          />
+        </button>
+      </div>
+      <div class="app__theme">
+        <button type="button" id="darkThemeBtn" class="theme__btn active">
+          <div class="theme__btn_box"></div>
+          <span class="theme__btn_text">dark</span>
+        </button>
+        <button type="button" id="lightThemeBtn" class="theme__btn">
+          <div class="theme__btn_box"></div>
+          <span class="theme__btn_text">light</span>
+        </button>
+      </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelector('.loading').style.opacity = '0';
+        document.querySelector('.app__wrapper').style.display = 'block';
+      });
+    </script>
+    <script src="js/index.js"></script>
+  </body>
+</html>
