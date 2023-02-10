@@ -34,22 +34,23 @@
       <span>Mateusz Wiśniewski</span><span class="bold"> Portfolio</span>
     </div>
     <div class="app__wrapper">
+      
       <main class="app">
         <header class="header">
           <h2 class="title--name">Mateusz Wiśniewski</h2>
           <h1 class="title--page" id="pageTitle">Portfolio</h1>
           <nav class="nav">
             <ul class="nav__list">
-              <li class="nav__list_item" data-target="home">home</li>
+              <li class="nav__list_item active" data-target="home">home</li>
               <li class="nav__list_item" data-target="about">about me</li>
-              <li class="nav__list_item active" data-target="projects">
+              <li class="nav__list_item" data-target="projects">
                 projects
               </li>
               <li class="nav__list_item" data-target="contact">contact</li>
             </ul>
           </nav>
         </header>
-        <section class="page page--home" data-page="home">
+        <section class="page page--home active" data-page="home">
           <a
             href="https://github.com/wisnies"
             target="_blank"
@@ -83,7 +84,7 @@
             <span class="tag">docker</span>
           </div>
         </section>
-        <section class="page page--projects active" data-page="projects">
+        <section class="page page--projects" data-page="projects">
           <div class="project__carousel_container">
             <div class="project__carousel">
               <div class="project__carousel_slider">
@@ -161,6 +162,9 @@
           <div class="theme__btn_box"></div>
           <span class="theme__btn_text theme__btn_text--light">light</span>
         </button>
+      </div>
+      <div class="app__background">
+     
       </div>
     </div>
     <script>

@@ -178,6 +178,8 @@ interface IApp {
   currentLocale: 'en' | 'pl';
   currentPage: 'home' | 'about' | 'projects' | 'contact';
   projects: Project[];
+  initialY: number | null;
+  isMoving: boolean;
 
   setupApp: () => void;
 }
@@ -191,6 +193,8 @@ class App implements IApp {
   currentPage: 'home' | 'about' | 'projects' | 'contact';
   direction: -1 | 1;
   projects: Project[];
+  initialY: number | null;
+  isMoving: boolean;
 
   constructor() {
     this.DOM = {
@@ -259,6 +263,8 @@ class App implements IApp {
     this.currentPage = 'home';
     this.direction = -1;
     this.projects = projects;
+    this.initialY = null;
+    this.isMoving = false;
   }
 
   private copyToClipboard = (e: MouseEvent) => {
@@ -391,6 +397,8 @@ class App implements IApp {
     title.classList.add('project__title');
     title.textContent = data.title;
     title.href = data.deployed;
+    title.target = '_blank';
+    title.rel = 'norefferer';
 
     const year = document.createElement('span');
     year.classList.add('project__title_year');
@@ -406,6 +414,8 @@ class App implements IApp {
         const tag = document.createElement('span');
         tag.classList.add('project__tag');
         tag.textContent = t;
+        title.target = '_blank';
+        title.rel = 'norefferer';
         tagsContainer.appendChild(tag);
       });
     });
@@ -457,38 +467,59 @@ class App implements IApp {
     );
     this.updateDOM('en');
     this.setupCarousel();
+
+    if (window.TouchEvent) {
+      window.addEventListener('touchstart', (e: TouchEvent) => {
+        this.initialY = e.targetTouches[0].clientY;
+        this.isMoving = true;
+      });
+      window.addEventListener('touchmove', (e: TouchEvent) => {
+        if (this.isMoving) {
+          const currentY = e.targetTouches[0].clientY;
+          const diff = currentY - this.initialY;
+          if (diff >= 10) {
+            this.isMoving = false;
+            this.handlePrevSlide();
+            return;
+          }
+          if (diff <= -10) {
+            this.isMoving = false;
+            this.handleNextSlide();
+            return;
+          }
+        }
+      });
+      window.addEventListener('touchend', () => {
+        this.isMoving = false;
+      });
+    }
+    window.addEventListener('mousedown', (e: MouseEvent) => {
+      this.initialY = e.pageY;
+      this.isMoving = true;
+    });
+
+    window.addEventListener('mousemove', (e: MouseEvent) => {
+      if (this.isMoving) {
+        const currentY = e.pageY;
+        const diff = currentY - this.initialY;
+        if (diff >= 40) {
+          this.isMoving = false;
+          this.handlePrevSlide();
+          return;
+        }
+        if (diff <= -40) {
+          this.isMoving = false;
+          this.handleNextSlide();
+          return;
+        }
+      }
+    });
+
+    window.addEventListener('mouseup', () => {
+      this.isMoving = false;
+    });
   };
 }
 
 const app = new App();
 app.setupApp();
-
-// next.addEventListener('click', (e: MouseEvent) => {
-//   if (direction === 1) {
-//     slider.prepend(slider.lastElementChild);
-//     direction = -1;
-//   }
-//   carousel.style.justifyContent = 'flex-start';
-//   slider.style.transform = 'translateX(-20%)';
-// });
-// prev.addEventListener('click', (e: MouseEvent) => {
-//   if (direction === -1) {
-//     slider.appendChild(slider.firstElementChild);
-//     direction = 1;
-//   }
-//   carousel.style.justifyContent = 'flex-end';
-//   slider.style.transform = 'translateX(20%)';
-// });
-
-// slider.addEventListener('transitionend', () => {
-//   if (direction === -1) {
-//     slider.appendChild(slider.firstElementChild);
-//   } else {
-//     slider.prepend(slider.lastElementChild);
-//   }
-//   slider.style.transition = 'none';
-//   slider.style.transform = 'translateX(0)';
-//   setTimeout(() => {
-//     slider.style.transition = 'all 0.5s ease';
-//   });
-// });
