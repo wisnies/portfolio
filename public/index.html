@@ -40,14 +40,16 @@
           <h1 class="title--page" id="pageTitle">Portfolio</h1>
           <nav class="nav">
             <ul class="nav__list">
-              <li class="nav__list_item active" data-target="home">home</li>
-              <li class="nav__list_item" data-target="about">about</li>
-              <li class="nav__list_item" data-target="projects">projects</li>
+              <li class="nav__list_item" data-target="home">home</li>
+              <li class="nav__list_item" data-target="about">about me</li>
+              <li class="nav__list_item active" data-target="projects">
+                projects
+              </li>
               <li class="nav__list_item" data-target="contact">contact</li>
             </ul>
           </nav>
         </header>
-        <section class="page page--home active" data-page="home">
+        <section class="page page--home" data-page="home">
           <a
             href="https://github.com/wisnies"
             target="_blank"
@@ -57,32 +59,44 @@
           >
         </section>
         <section class="page page--about" data-page="about">
-          <h5 class="title--subpage">Who am I</h5>
-          <p class="text">
-            Self tought, ambition driven developer. Always lookig learn and
+          <h5 class="title--subpage title--ab">Who am I</h5>
+          <p class="text desc--ab">
+            Self taught, ambition driven developer. Always lookig to learn and
             improve.
           </p>
-          <h5 class="title--subpage">What I can do</h5>
+          <h5 class="title--subpage skillsTitle--ab">What I can do</h5>
           <div class="tag__container">
             <span class="tag">html</span>
             <span class="tag">css</span>
             <span class="tag">sass</span>
             <span class="tag">js</span>
             <span class="tag">typescript</span>
+            <span class="tag">RWD</span>
             <span class="tag">React.js</span>
             <span class="tag">Next.js</span>
             <span class="tag">Prisma</span>
             <span class="tag">Mongoose</span>
             <span class="tag">Express.js</span>
             <span class="tag">mongodb</span>
-            <span class="tag">postgrsql</span>
+            <span class="tag">postgresql</span>
             <span class="tag">sql</span>
             <span class="tag">docker</span>
           </div>
         </section>
-        <section class="page page--projects" data-page="projects"></section>
+        <section class="page page--projects active" data-page="projects">
+          <div class="project__carousel_container">
+            <div class="project__carousel">
+              <div class="project__carousel_slider">
+              </div>
+              <div class="project__carousel_controlls">
+                <button type="button" class="project__carousel_btn project__carousel_btn--prev">Previous project</butt>
+                <button type="button" class="project__carousel_btn project__carousel_btn--next">Next project</button>
+              </div>
+            </div>
+          </div>
+        </section>
         <section class="page page--contact" data-page="contact">
-          <h5 class="title--subpage">Contact me</h5>
+          <h5 class="title--subpage title--c">Contact me</h5>
           <div class="copy__container">
             <a
               class="link--contact"
@@ -90,7 +104,10 @@
               class="link"
               >mateusz.wisniewski.konto@gmail.com</a
             >
-            <button class="copy__btn">
+            <button
+              class="copy__btn copy__btn--email"
+              data-value="mateusz.wisniewski.konto@gmail.com"
+            >
               <img src="assets/copy.png" alt="copy icon" />
             </button>
           </div>
@@ -98,7 +115,7 @@
             <a class="link--contact" href="tel:+48692651419" class="link"
               >+48 692 651 410</a
             >
-            <button class="copy__btn">
+            <button class="copy__btn copy__btn--mobile" data-value="692651419">
               <img src="assets/copy.png" alt="copy icon" />
             </button>
           </div>
@@ -113,7 +130,12 @@
         </section>
       </main>
       <div class="app__locale">
-        <button type="button" class="locale__btn active">
+        <button
+          type="button"
+          id="enBtn"
+          data-target="en"
+          class="locale__btn active"
+        >
           <div class="locale__btn_overlay"></div>
           <img
             src="assets/en-flag.png"
@@ -121,7 +143,7 @@
             class="locale__btn_img"
           />
         </button>
-        <button type="button" class="locale__btn">
+        <button type="button" id="plBtn" data-target="pl" class="locale__btn">
           <div class="locale__btn_overlay"></div>
           <img
             src="assets/pl-flag.png"
@@ -133,11 +155,11 @@
       <div class="app__theme">
         <button type="button" id="darkThemeBtn" class="theme__btn active">
           <div class="theme__btn_box"></div>
-          <span class="theme__btn_text">dark</span>
+          <span class="theme__btn_text theme__btn_text--dark">dark</span>
         </button>
         <button type="button" id="lightThemeBtn" class="theme__btn">
           <div class="theme__btn_box"></div>
-          <span class="theme__btn_text">light</span>
+          <span class="theme__btn_text theme__btn_text--light">light</span>
         </button>
       </div>
     </div>
