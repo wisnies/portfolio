@@ -303,31 +303,3 @@ class App {
 }
 const app = new App();
 app.setupApp();
-// next.addEventListener('click', (e: MouseEvent) => {
-//   if (direction === 1) {
-//     slider.prepend(slider.lastElementChild);
-//     direction = -1;
-//   }
-//   carousel.style.justifyContent = 'flex-start';
-//   slider.style.transform = 'translateX(-20%)';
-// });
-// prev.addEventListener('click', (e: MouseEvent) => {
-//   if (direction === -1) {
-//     slider.appendChild(slider.firstElementChild);
-//     direction = 1;
-//   }
-//   carousel.style.justifyContent = 'flex-end';
-//   slider.style.transform = 'translateX(20%)';
-// });
-// slider.addEventListener('transitionend', () => {
-//   if (direction === -1) {
-//     slider.appendChild(slider.firstElementChild);
-//   } else {
-//     slider.prepend(slider.lastElementChild);
-//   }
-//   slider.style.transition = 'none';
-//   slider.style.transform = 'translateX(0)';
-//   setTimeout(() => {
-//     slider.style.transition = 'all 0.5s ease';
-//   });
-// });
