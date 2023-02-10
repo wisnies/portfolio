@@ -214,6 +214,8 @@ class App {
             title.classList.add('project__title');
             title.textContent = data.title;
             title.href = data.deployed;
+            title.target = '_blank';
+            title.rel = 'norefferer';
             const year = document.createElement('span');
             year.classList.add('project__title_year');
             year.textContent = `${data.year}`;
@@ -226,6 +228,8 @@ class App {
                     const tag = document.createElement('span');
                     tag.classList.add('project__tag');
                     tag.textContent = t;
+                    title.target = '_blank';
+                    title.rel = 'norefferer';
                     tagsContainer.appendChild(tag);
                 });
             });
@@ -256,6 +260,54 @@ class App {
             this.DOM.projectsPage.slider.addEventListener('transitionend', this.handleTransitionEnd);
             this.updateDOM('en');
             this.setupCarousel();
+            if (window.TouchEvent) {
+                window.addEventListener('touchstart', (e) => {
+                    this.initialY = e.targetTouches[0].clientY;
+                    this.isMoving = true;
+                });
+                window.addEventListener('touchmove', (e) => {
+                    if (this.isMoving) {
+                        const currentY = e.targetTouches[0].clientY;
+                        const diff = currentY - this.initialY;
+                        if (diff >= 10) {
+                            this.isMoving = false;
+                            this.handlePrevSlide();
+                            return;
+                        }
+                        if (diff <= -10) {
+                            this.isMoving = false;
+                            this.handleNextSlide();
+                            return;
+                        }
+                    }
+                });
+                window.addEventListener('touchend', () => {
+                    this.isMoving = false;
+                });
+            }
+            window.addEventListener('mousedown', (e) => {
+                this.initialY = e.pageY;
+                this.isMoving = true;
+            });
+            window.addEventListener('mousemove', (e) => {
+                if (this.isMoving) {
+                    const currentY = e.pageY;
+                    const diff = currentY - this.initialY;
+                    if (diff >= 40) {
+                        this.isMoving = false;
+                        this.handlePrevSlide();
+                        return;
+                    }
+                    if (diff <= -40) {
+                        this.isMoving = false;
+                        this.handleNextSlide();
+                        return;
+                    }
+                }
+            });
+            window.addEventListener('mouseup', () => {
+                this.isMoving = false;
+            });
         };
         this.DOM = {
             body: document.querySelector('body'),
@@ -299,6 +351,8 @@ class App {
         this.currentPage = 'home';
         this.direction = -1;
         this.projects = projects;
+        this.initialY = null;
+        this.isMoving = false;
     }
 }
 const app = new App();
