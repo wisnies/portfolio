@@ -218,12 +218,12 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("/portfolio/assets/bg-sm.jpg") center/cover no-repeat;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("assets/bg-sm.jpg") center/cover no-repeat;
   filter: grayscale(1);
 }
 @media screen and (min-width: 768px) {
   .app__background_image {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("/portfolio/assets/bg-md.jpg") center/cover no-repeat;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("assets/bg-md.jpg") center/cover no-repeat;
   }
 }
 @media screen and (min-width: 1440px) {
