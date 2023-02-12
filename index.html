@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta name="keywords" content="Portfolio, webdeveloper, HTML, CSS, JavaScript, typescript, React.js, Next.js">
+    <meta name="description" content="Mateusz Wiśniewski portfolio. Webdeveloper confident with React.js, Next.js, typescript, prisma, postrgresql, mongodb, express.">
+    <meta name="author" content="Mateusz Wiśniewski">
     <title>Mateusz Wiśniewski | Portfolio</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
     <style>
@@ -19,7 +23,10 @@
         justify-content: center;
         color: white;
         display: flex;
-        transition: opacity 0.3s ease;
+        z-index: 11;
+        transition: opacity 0.5s ease;
+        transition-delay: 0.5s;
+        pointer-events: none;
       }
       .bold {
         font-weight: 400;
@@ -51,13 +58,13 @@
           </nav>
         </header>
         <section class="page page--home active" data-page="home">
-          <a
-            href="https://github.com/wisnies"
-            target="_blank"
-            rel="norefferer"
-            class="link--github"
-            >github</a
-          >
+            <a
+              href="https://github.com/wisnies"
+              target="_blank"
+              rel="norefferer"
+              class="link--github"
+              >github</a
+            >
         </section>
         <section class="page page--about" data-page="about">
           <h5 class="title--subpage title--ab">Who am I</h5>
@@ -99,26 +106,26 @@
         <section class="page page--contact" data-page="contact">
           <h5 class="title--subpage title--c">Contact me</h5>
           <div class="copy__container">
-            <a
-              class="link--contact"
-              href="mailto:mateusz.wisniewski.konto@gmail.com"
-              class="link"
-              >mateusz.wisniewski.konto@gmail.com</a
-            >
             <button
               class="copy__btn copy__btn--email"
               data-value="mateusz.wisniewski.konto@gmail.com"
             >
-              <img src="assets/copy.png" alt="copy icon" />
-            </button>
+            <img src="assets/copy.png" alt="copy icon" />
+          </button>
+          <a
+            class="copy__link"
+            href="mailto:mateusz.wisniewski.konto@gmail.com"
+            class="link"
+            >mateusz.wisniewski.konto@gmail.com</a
+          >
           </div>
           <div class="copy__container">
-            <a class="link--contact" href="tel:+48692651419" class="link"
-              >+48 692 651 410</a
-            >
             <button class="copy__btn copy__btn--mobile" data-value="692651419">
               <img src="assets/copy.png" alt="copy icon" />
             </button>
+            <a class="copy__link" href="tel:+48692651419" class="link"
+              >+48 692 651 410</a
+            >
           </div>
 
           <a
@@ -164,7 +171,10 @@
         </button>
       </div>
       <div class="app__background">
-     
+        <div class="app__background_inner">
+          <div class="app__background_image"></div>
+          <div class="app__background_overlay app__background_overlay--home"></div>
+        </div>
       </div>
     </div>
     <script>
