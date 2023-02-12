@@ -90,7 +90,7 @@ body {
           rgba(0, 0, 0, 0.8),
           rgba(0, 0, 0, 0.8)
         ),
-        url('/public/assets/bg-sm.jpg') center/cover no-repeat;
+        url('/portfolio/assets/bg-sm.jpg') center/cover no-repeat;
       filter: grayscale(1);
       @include responsive($tablet, 'min') {
         background: linear-gradient(
@@ -98,7 +98,7 @@ body {
             rgba(0, 0, 0, 0.8),
             rgba(0, 0, 0, 0.8)
           ),
-          url('/public/assets/bg-md.jpg') center/cover no-repeat;
+          url('/portfolio/assets/bg-md.jpg') center/cover no-repeat;
       }
       @include responsive($laptopL, 'min') {
         background: linear-gradient(
@@ -106,7 +106,7 @@ body {
             rgba(0, 0, 0, 0.8),
             rgba(0, 0, 0, 0.8)
           ),
-          url('/public/assets/bg-lg.jpg') center/cover no-repeat;
+          url('/portfolio/assets/bg-lg.jpg') center/cover no-repeat;
       }
     }
 
