@@ -24,6 +24,16 @@ const locale = {
             },
             skillsTitle: { en: 'What I can do', pl: 'Co potrafię' },
         },
+        projects: {
+            nextBtn: {
+                en: 'next project',
+                pl: 'następny projekt',
+            },
+            prevBtn: {
+                en: 'previous project',
+                pl: 'poprzedni projekt',
+            },
+        },
         contact: {
             title: { en: 'Contact me', pl: 'Dane kontaktowe' },
         },
@@ -147,6 +157,10 @@ class App {
                 this.locale.pages.about.skillsTitle[locale];
             this.DOM.contactPage.title.innerText =
                 this.locale.pages.contact.title[locale];
+            this.DOM.projectsPage.nextBtn.innerText =
+                this.locale.pages.projects.nextBtn[locale];
+            this.DOM.projectsPage.prevBtn.innerText =
+                this.locale.pages.projects.prevBtn[locale];
         };
         this.changeTheme = (e) => {
             const btn = e.target;
@@ -173,17 +187,25 @@ class App {
             const currentLi = items.filter((l) => l.classList.contains('active'))[0];
             const currentPage = pages.filter((p) => p.classList.contains('active'))[0];
             const nextPage = pages.filter((p) => p.dataset.page === target)[0];
+            const currentOvClass = `app__background_overlay--${currentPage.dataset.page}`;
+            const nextOvClass = `app__background_overlay--${target}`;
             this.currentPage = target;
             currentLi.classList.remove('active');
             li.classList.add('active');
-            this.DOM.pageTitle.innerText =
-                this.locale.pageTitle[target][this.currentLocale];
+            this.DOM.pageTitle.classList.add('fadeOutAndIn');
             currentPage.classList.remove('active');
             currentPage.classList.add('fadeOut');
             nextPage.classList.add('active');
+            this.DOM.overlay.classList.remove(currentOvClass);
+            this.DOM.overlay.classList.add(nextOvClass);
             setTimeout(() => {
+                this.DOM.pageTitle.innerText =
+                    this.locale.pageTitle[target][this.currentLocale];
                 currentPage.classList.remove('fadeOut');
             }, 200);
+            setTimeout(() => {
+                this.DOM.pageTitle.classList.remove('fadeOutAndIn');
+            }, 400);
         };
         this.changeLocale = (e) => {
             const btn = e.target;
@@ -219,17 +241,15 @@ class App {
             const year = document.createElement('span');
             year.classList.add('project__title_year');
             year.textContent = `${data.year}`;
-            titleContainer.appendChild(title);
-            titleContainer.prepend(year);
+            titleContainer.appendChild(year);
+            titleContainer.prepend(title);
             const tagsContainer = document.createElement('div');
-            tagsContainer.classList.add('project__tag_container');
+            tagsContainer.classList.add('tag__container');
             setTimeout(() => {
                 data.tags.forEach((t) => {
                     const tag = document.createElement('span');
-                    tag.classList.add('project__tag');
+                    tag.classList.add('tag');
                     tag.textContent = t;
-                    title.target = '_blank';
-                    title.rel = 'norefferer';
                     tagsContainer.appendChild(tag);
                 });
             });
@@ -249,6 +269,20 @@ class App {
             const projects = this.projects.map((p) => this.createProject(p));
             projects.forEach((p) => this.DOM.projectsPage.slider.appendChild(p));
         };
+        this.drawOverlay = () => {
+            for (let i = 0; i < 48; i++) {
+                const row = document.createElement('div');
+                row.classList.add('row');
+                row.classList.add(`row-${i}`);
+                for (let j = 0; j < 48; j++) {
+                    const col = document.createElement('div');
+                    col.classList.add('col');
+                    col.classList.add(`col-${j}`);
+                    row.appendChild(col);
+                }
+                this.DOM.overlay.appendChild(row);
+            }
+        };
         this.setupApp = () => {
             this.DOM.theme.container.addEventListener('click', this.changeTheme);
             this.DOM.locale.container.addEventListener('click', this.changeLocale);
@@ -260,6 +294,7 @@ class App {
             this.DOM.projectsPage.slider.addEventListener('transitionend', this.handleTransitionEnd);
             this.updateDOM('en');
             this.setupCarousel();
+            this.drawOverlay();
             if (window.TouchEvent) {
                 window.addEventListener('touchstart', (e) => {
                     this.initialY = e.targetTouches[0].clientY;
@@ -311,6 +346,7 @@ class App {
         };
         this.DOM = {
             body: document.querySelector('body'),
+            overlay: document.querySelector('.app__background_overlay'),
             theme: {
                 container: document.querySelector('.app__theme'),
                 darkBtn: document.querySelector('#darkThemeBtn'),

@@ -1,14 +1,14 @@
 :root {
   --primary: black;
-  --primaryAlfa: rgba(0, 0, 0, 0.8);
+  --primaryAlfa: rgba(0, 0, 0, 0.6);
   --secondary: white;
-  --secondaryAlfa: rgba(255, 255, 255, 0.8);
+  --secondaryAlfa: rgba(255, 255, 255, 0.6);
 }
 body.light {
   --primary: white;
-  --primaryAlfa: rgba(255, 255, 255, 0.8);
+  --primaryAlfa: rgba(255, 255, 255, 0.6);
   --secondary: black;
-  --secondaryAlfa: rgba(0, 0, 0, 0.8);
+  --secondaryAlfa: rgba(0, 0, 0, 0.6);
 }
 
 $primary: var(--primary);

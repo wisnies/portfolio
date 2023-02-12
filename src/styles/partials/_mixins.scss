@@ -4,8 +4,23 @@
   justify-content: center;
 }
 
-@mixin responsive($breakpoint) {
-  @media screen and (min-width: $breakpoint) {
-    @content;
+@mixin responsive($breakpoint, $direction) {
+  @if $direction == 'min' {
+    @media screen and (min-width: $breakpoint) {
+      @content;
+    }
+  } @else {
+    @media screen and (max-width: calc($breakpoint - 1px)) {
+      @content;
+    }
+  }
+}
+
+@mixin paintRow($start, $end) {
+  @for $i from $start to $end {
+    .col-#{$i} {
+      background-color: transparent !important;
+      border: 1px solid $primary;
+    }
   }
 }

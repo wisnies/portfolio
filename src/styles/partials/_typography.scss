@@ -19,7 +19,7 @@
     margin-bottom: 10px;
   }
 
-  @include responsive($mobileL) {
+  @include responsive($mobileL, 'min') {
     #{$self}--page {
       font-size: 40px;
     }
@@ -35,9 +35,9 @@
   color: $secondary;
   font-size: 12px;
   width: 70%;
-  text-align: right;
+  text-align: left;
   font-weight: 300;
-  @include responsive($mobileL) {
+  @include responsive($mobileL, 'min') {
     font-size: 16px;
   }
 }
@@ -54,17 +54,18 @@
       color: $secondaryAlfa;
     }
 
-    @include responsive($mobileL) {
+    @include responsive($mobileL, 'min') {
       font-size: 18px;
     }
   }
   &--contact {
-    display: block;
+    margin-left: 20px;
     font-size: 10px;
     text-transform: uppercase;
     text-decoration: none;
     color: $secondary;
-    @include responsive($mobileL) {
+    border: 1px solid red;
+    @include responsive($mobileL, 'min') {
       font-size: 16px;
     }
   }

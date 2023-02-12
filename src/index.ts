@@ -1,5 +1,6 @@
 type DOM = {
   body: HTMLBodyElement;
+  overlay: HTMLDivElement;
   theme: {
     container: HTMLDivElement;
     darkBtn: HTMLButtonElement;
@@ -36,31 +37,36 @@ type DOM = {
   };
 };
 
+type LocaleElement = { en: string; pl: string };
 type Locale = {
   pageTitle: {
-    home: { en: string; pl: string };
-    about: { en: string; pl: string };
-    projects: { en: string; pl: string };
-    contact: { en: string; pl: string };
+    home: LocaleElement;
+    about: LocaleElement;
+    projects: LocaleElement;
+    contact: LocaleElement;
   };
   nav: {
-    home: { en: string; pl: string };
-    about: { en: string; pl: string };
-    projects: { en: string; pl: string };
-    contact: { en: string; pl: string };
+    home: LocaleElement;
+    about: LocaleElement;
+    projects: LocaleElement;
+    contact: LocaleElement;
   };
   themes: {
-    dark: { en: string; pl: string };
-    light: { en: string; pl: string };
+    dark: LocaleElement;
+    light: LocaleElement;
   };
   pages: {
     about: {
-      title: { en: string; pl: string };
-      desc: { en: string; pl: string };
-      skillsTitle: { en: string; pl: string };
+      title: LocaleElement;
+      desc: LocaleElement;
+      skillsTitle: LocaleElement;
+    };
+    projects: {
+      nextBtn: LocaleElement;
+      prevBtn: LocaleElement;
     };
     contact: {
-      title: { en: string; pl: string };
+      title: LocaleElement;
     };
   };
 };
@@ -98,6 +104,16 @@ const locale: Locale = {
         pl: 'Ambitny samouk, zawsze chętny do nauki i rozwoju umiejętności',
       },
       skillsTitle: { en: 'What I can do', pl: 'Co potrafię' },
+    },
+    projects: {
+      nextBtn: {
+        en: 'next project',
+        pl: 'następny projekt',
+      },
+      prevBtn: {
+        en: 'previous project',
+        pl: 'poprzedni projekt',
+      },
     },
     contact: {
       title: { en: 'Contact me', pl: 'Dane kontaktowe' },
@@ -186,7 +202,6 @@ interface IApp {
 
 class App implements IApp {
   DOM: DOM;
-
   locale: Locale;
 
   currentLocale: 'en' | 'pl';
@@ -199,6 +214,9 @@ class App implements IApp {
   constructor() {
     this.DOM = {
       body: document.querySelector('body') as HTMLBodyElement,
+      overlay: document.querySelector(
+        '.app__background_overlay'
+      ) as HTMLDivElement,
       theme: {
         container: document.querySelector('.app__theme') as HTMLDivElement,
         darkBtn: document.querySelector('#darkThemeBtn') as HTMLButtonElement,
@@ -320,6 +338,10 @@ class App implements IApp {
       this.locale.pages.about.skillsTitle[locale];
     this.DOM.contactPage.title.innerText =
       this.locale.pages.contact.title[locale];
+    this.DOM.projectsPage.nextBtn.innerText =
+      this.locale.pages.projects.nextBtn[locale];
+    this.DOM.projectsPage.prevBtn.innerText =
+      this.locale.pages.projects.prevBtn[locale];
   };
   private changeTheme = (e: MouseEvent) => {
     const btn = e.target as HTMLButtonElement;
@@ -353,19 +375,27 @@ class App implements IApp {
     const currentLi = items.filter((l) => l.classList.contains('active'))[0];
     const currentPage = pages.filter((p) => p.classList.contains('active'))[0];
     const nextPage = pages.filter((p) => p.dataset.page === target)[0];
-
+    const currentOvClass = `app__background_overlay--${currentPage.dataset.page}`;
+    const nextOvClass = `app__background_overlay--${target}`;
     this.currentPage = target;
     currentLi.classList.remove('active');
     li.classList.add('active');
-    this.DOM.pageTitle.innerText =
-      this.locale.pageTitle[target][this.currentLocale];
+    this.DOM.pageTitle.classList.add('fadeOutAndIn');
 
     currentPage.classList.remove('active');
     currentPage.classList.add('fadeOut');
     nextPage.classList.add('active');
+    this.DOM.overlay.classList.remove(currentOvClass);
+    this.DOM.overlay.classList.add(nextOvClass);
+
     setTimeout(() => {
+      this.DOM.pageTitle.innerText =
+        this.locale.pageTitle[target][this.currentLocale];
       currentPage.classList.remove('fadeOut');
     }, 200);
+    setTimeout(() => {
+      this.DOM.pageTitle.classList.remove('fadeOutAndIn');
+    }, 400);
   };
   private changeLocale = (e: MouseEvent) => {
     const btn = e.target as HTMLButtonElement;
@@ -404,18 +434,16 @@ class App implements IApp {
     year.classList.add('project__title_year');
     year.textContent = `${data.year}`;
 
-    titleContainer.appendChild(title);
-    titleContainer.prepend(year);
+    titleContainer.appendChild(year);
+    titleContainer.prepend(title);
 
     const tagsContainer = document.createElement('div');
-    tagsContainer.classList.add('project__tag_container');
+    tagsContainer.classList.add('tag__container');
     setTimeout(() => {
       data.tags.forEach((t) => {
         const tag = document.createElement('span');
-        tag.classList.add('project__tag');
+        tag.classList.add('tag');
         tag.textContent = t;
-        title.target = '_blank';
-        title.rel = 'norefferer';
         tagsContainer.appendChild(tag);
       });
     });
@@ -439,6 +467,20 @@ class App implements IApp {
     }%`;
     const projects = this.projects.map((p) => this.createProject(p));
     projects.forEach((p) => this.DOM.projectsPage.slider.appendChild(p));
+  };
+  private drawOverlay = () => {
+    for (let i = 0; i < 48; i++) {
+      const row = document.createElement('div');
+      row.classList.add('row');
+      row.classList.add(`row-${i}`);
+      for (let j = 0; j < 48; j++) {
+        const col = document.createElement('div');
+        col.classList.add('col');
+        col.classList.add(`col-${j}`);
+        row.appendChild(col);
+      }
+      this.DOM.overlay.appendChild(row);
+    }
   };
 
   public setupApp = () => {
@@ -467,6 +509,7 @@ class App implements IApp {
     );
     this.updateDOM('en');
     this.setupCarousel();
+    this.drawOverlay();
 
     if (window.TouchEvent) {
       window.addEventListener('touchstart', (e: TouchEvent) => {

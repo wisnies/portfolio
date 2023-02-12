@@ -7,6 +7,10 @@
 @import './partials/typography';
 @import './partials/animations';
 
+body {
+  background-color: $primary;
+}
+
 .app {
   width: 100%;
   height: 100%;
@@ -20,7 +24,8 @@
     padding: 5px;
     position: relative;
     overflow: hidden;
-    @include responsive($laptop) {
+
+    @include responsive($laptop, 'min') {
       padding: 10px;
     }
   }
@@ -37,7 +42,7 @@
     grid-gap: 4px;
     padding-left: 4px;
     padding-bottom: 4px;
-    @include responsive($laptop) {
+    @include responsive($laptop, 'min') {
       top: 10px;
       right: 10px;
     }
@@ -46,36 +51,406 @@
     z-index: 10;
     position: absolute;
     top: calc(100% - 5px);
-    left: 5px;
+    left: calc(100% - 5px);
     transform-origin: top left;
-    transform: rotate(270deg);
+    transform: rotate(270deg) translateY(-100%);
     background-color: $primary;
-    border-bottom: 1px solid $secondary;
+    border-top: 1px solid $secondary;
     border-right: 1px solid $secondary;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
     padding-right: 4px;
     padding-bottom: 4px;
-    @include responsive($laptop) {
+    @include responsive($laptop, 'min') {
       top: calc(100% - 10px);
-      left: 10px;
+      left: calc(100% - 10px);
     }
   }
   &__background {
-    background-color: $primary;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 5px;
+    left: 5px;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
     z-index: -1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    @include responsive($laptop) {
-      padding: 20px;
+    &_inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    &_image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.8),
+          rgba(0, 0, 0, 0.8)
+        ),
+        url('/public/assets/bg-sm.jpg') center/cover no-repeat;
+      filter: grayscale(1);
+      @include responsive($tablet, 'min') {
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.8)
+          ),
+          url('/public/assets/bg-md.jpg') center/cover no-repeat;
+      }
+      @include responsive($laptopL, 'min') {
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.8)
+          ),
+          url('/public/assets/bg-lg.jpg') center/cover no-repeat;
+      }
+    }
+
+    @include responsive($laptop, 'min') {
+      top: 10px;
+      left: 10px;
+      width: calc(100% - 20px);
+      height: calc(100% - 20px);
+    }
+    &_overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-rows: repeat(48, 1fr);
+
+      @include responsive($laptop, 'min') {
+        grid-template-rows: repeat(24, 1fr);
+      }
+
+      & .row {
+        display: grid;
+        grid-template-columns: repeat(24, 1fr);
+        & .col-24,
+        & .col-25,
+        & .col-26,
+        & .col-27,
+        & .col-28,
+        & .col-29,
+        & .col-30,
+        & .col-31,
+        & .col-32,
+        & .col-33,
+        & .col-34,
+        & .col-35,
+        & .col-36,
+        & .col-37,
+        & .col-38,
+        & .col-39,
+        & .col-40,
+        & .col-41,
+        & .col-42,
+        & .col-43,
+        & .col-44,
+        & .col-45,
+        & .col-46,
+        & .col-47 {
+          display: none;
+        }
+        @include responsive($laptop, 'min') {
+          grid-template-columns: repeat(48, 1fr);
+          &.row-24,
+          &.row-25,
+          &.row-26,
+          &.row-27,
+          &.row-28,
+          &.row-29,
+          &.row-30,
+          &.row-31,
+          &.row-32,
+          &.row-33,
+          &.row-34,
+          &.row-35,
+          &.row-36,
+          &.row-37,
+          &.row-38,
+          &.row-39,
+          &.row-40,
+          &.row-41,
+          &.row-42,
+          &.row-43,
+          &.row-44,
+          &.row-45,
+          &.row-46,
+          &.row-47 {
+            display: none;
+          }
+          & .col-24,
+          & .col-25,
+          & .col-26,
+          & .col-27,
+          & .col-28,
+          & .col-29,
+          & .col-30,
+          & .col-31,
+          & .col-32,
+          & .col-33,
+          & .col-34,
+          & .col-35,
+          & .col-36,
+          & .col-37,
+          & .col-38,
+          & .col-39,
+          & .col-40,
+          & .col-41,
+          & .col-42,
+          & .col-43,
+          & .col-44,
+          & .col-45,
+          & .col-46,
+          & .col-47 {
+            display: block;
+          }
+        }
+      }
+
+      & .col {
+        width: 100%;
+        height: 100%;
+        background-color: $primary;
+        transition: all 0.5s ease;
+      }
+
+      &--home,
+      &--about,
+      &--projects,
+      &--contact {
+        & .row {
+          @include responsive($laptop, 'max') {
+            &-0 {
+              @include paintRow(10, 12);
+            }
+            &-1 {
+              @include paintRow(8, 10);
+              @include paintRow(11, 15);
+            }
+            &-2 {
+              @include paintRow(15, 17);
+              @include paintRow(22, 23);
+            }
+            &-3 {
+              @include paintRow(15, 16);
+              @include paintRow(20, 23);
+            }
+            &-4 {
+              @include paintRow(15, 17);
+              @include paintRow(18, 21);
+              @include paintRow(22, 23);
+            }
+            &-5 {
+              @include paintRow(16, 22);
+            }
+            &-6 {
+              @include paintRow(15, 17);
+              @include paintRow(18, 23);
+            }
+            &-7 {
+              @include paintRow(15, 17);
+              @include paintRow(18, 23);
+            }
+            &-8 {
+              @include paintRow(8, 11);
+              @include paintRow(13, 21);
+            }
+            &-9 {
+              @include paintRow(8, 10);
+              @include paintRow(12, 23);
+            }
+            &-10 {
+              @include paintRow(9, 22);
+            }
+            &-11 {
+              @include paintRow(7, 17);
+              @include paintRow(19, 23);
+            }
+            &-12 {
+              @include paintRow(8, 10);
+              @include paintRow(11, 15);
+              @include paintRow(16, 22);
+            }
+            &-13 {
+              @include paintRow(8, 10);
+              @include paintRow(12, 14);
+              @include paintRow(16, 22);
+            }
+            &-14 {
+              @include paintRow(8, 10);
+              @include paintRow(11, 15);
+              @include paintRow(16, 22);
+            }
+            &-15 {
+              @include paintRow(8, 10);
+              @include paintRow(12, 14);
+              @include paintRow(16, 22);
+            }
+            &-16 {
+              @include paintRow(8, 10);
+              @include paintRow(11, 15);
+              @include paintRow(16, 20);
+            }
+            &-17 {
+              @include paintRow(9, 14);
+              @include paintRow(16, 22);
+            }
+            &-18 {
+              @include paintRow(6, 10);
+              @include paintRow(11, 17);
+              @include paintRow(20, 22);
+            }
+          }
+          @include responsive($laptop, 'min') {
+            &-0 {
+              @include paintRow(20, 27);
+            }
+            &-1 {
+              @include paintRow(18, 28);
+              @include paintRow(30, 36);
+            }
+            &-2 {
+              @include paintRow(15, 22);
+              @include paintRow(23, 40);
+            }
+            &-3 {
+              @include paintRow(15, 19);
+              @include paintRow(22, 38);
+            }
+            &-4 {
+              @include paintRow(8, 20);
+              @include paintRow(22, 30);
+              @include paintRow(32, 43);
+            }
+            &-5 {
+              @include paintRow(9, 30);
+              @include paintRow(38, 45);
+            }
+            &-6 {
+              @include paintRow(10, 22);
+              @include paintRow(28, 38);
+              @include paintRow(40, 46);
+            }
+            &-7 {
+              @include paintRow(12, 17);
+              @include paintRow(18, 23);
+              @include paintRow(25, 29);
+              @include paintRow(33, 43);
+            }
+            &-8 {
+              @include paintRow(8, 11);
+              @include paintRow(13, 21);
+              @include paintRow(30, 44);
+            }
+            &-9 {
+              @include paintRow(3, 10);
+              @include paintRow(14, 20);
+              @include paintRow(24, 44);
+            }
+            &-10 {
+              @include paintRow(9, 22);
+              @include paintRow(28, 42);
+            }
+            &-12 {
+              @include paintRow(28, 42);
+            }
+            &-13 {
+              @include paintRow(20, 25);
+              @include paintRow(27, 38);
+            }
+            &-14 {
+              @include paintRow(21, 26);
+              @include paintRow(27, 42);
+            }
+            &-15 {
+              @include paintRow(30, 40);
+            }
+            &-16 {
+              @include paintRow(27, 41);
+            }
+            &-17 {
+              @include paintRow(28, 40);
+            }
+            &-18 {
+              @include paintRow(29, 42);
+            }
+            &-19 {
+              @include paintRow(30, 43);
+            }
+            &-21 {
+              @include paintRow(30, 39);
+            }
+            &-22 {
+              @include paintRow(24, 43);
+            }
+          }
+        }
+      }
+
+      &--home,
+      &--about,
+      &--contact {
+        & .row {
+          &-25 {
+            @include paintRow(3, 10);
+            @include paintRow(12, 15);
+          }
+          &-26 {
+            @include paintRow(4, 20);
+          }
+          &-27 {
+            @include paintRow(2, 8);
+            @include paintRow(10, 17);
+            @include paintRow(19, 23);
+          }
+          &-28 {
+            @include paintRow(16, 24);
+          }
+        }
+      }
+      &--home,
+      &--contact {
+        & .row {
+          &-29 {
+            @include paintRow(15, 17);
+            @include paintRow(19, 22);
+          }
+          &-30 {
+            @include paintRow(14, 21);
+          }
+          &-31 {
+            @include paintRow(3, 10);
+            @include paintRow(12, 15);
+          }
+          &-32 {
+            @include paintRow(3, 10);
+            @include paintRow(12, 15);
+          }
+          &-33 {
+            @include paintRow(3, 10);
+            @include paintRow(12, 15);
+          }
+          &-34 {
+            @include paintRow(4, 20);
+          }
+          &-35 {
+            @include paintRow(2, 8);
+            @include paintRow(10, 17);
+            @include paintRow(19, 23);
+          }
+          &-36 {
+            @include paintRow(16, 24);
+          }
+        }
+      }
     }
   }
 }
@@ -159,7 +534,7 @@
   padding: 20px 0 0 5px;
   z-index: 9 !important;
 
-  @include responsive($mobileL) {
+  @include responsive($mobileL, 'min') {
     & h1 {
       font-size: 40px;
     }
@@ -190,7 +565,7 @@
         color: $secondaryAlfa;
       }
 
-      @include responsive($mobileL) {
+      @include responsive($mobileL, 'min') {
         height: 40px;
         font-size: 16px;
         &.active {
@@ -204,26 +579,19 @@
 .page {
   position: absolute;
   bottom: 5px;
-  right: 5px;
+  left: 5px;
   overflow: hidden;
-  max-width: $tablet;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
   opacity: 0;
   pointer-events: none;
-  width: calc(100% - 40px);
+  width: calc(100% - 10px);
+  max-width: $tablet;
   height: 60%;
-  padding: 5px;
-  @include responsive($tablet) {
-    height: 65%;
-  }
-  @include responsive($laptop) {
-    height: 90%;
-    width: 100%;
-    padding: 10px;
+  display: flex;
+  padding: 0 30px 5px 5px;
+  @include responsive($laptop, 'min') {
+    padding: 0 0 10px 10px;
     bottom: 10px;
-    right: 10px;
+    left: 10px;
   }
 
   &.active {
@@ -233,18 +601,24 @@
   }
 
   &--home {
-    padding-bottom: 140px !important;
-  }
-  &--about {
-    flex-direction: column;
-    @include responsive($mobileL) {
-      padding-bottom: 140px !important;
+    align-items: flex-end;
+
+    @include responsive($tablet, 'min') {
+      padding-bottom: 140px;
     }
   }
+  &--about,
   &--contact {
-    width: 100% !important;
     flex-direction: column;
-    padding-bottom: 140px !important;
+    align-items: flex-start;
+    justify-content: flex-end;
+
+    @include responsive($tablet, 'min') {
+      padding-bottom: 70px;
+    }
+  }
+  &--projects {
+    align-items: flex-end;
   }
 }
 
@@ -252,27 +626,41 @@
   background-color: $secondary;
   color: $primary;
   font-size: 12px;
-  padding: 4px 12px;
-  margin-left: 5px;
+  font-weight: 500;
+  padding: 2px 12px;
+  margin-right: 5px;
   margin-top: 5px;
   &__container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-end;
   }
 }
 
 .copy {
   &__container {
     display: flex;
-    flex-direction: row;
     align-items: center;
     margin-bottom: 10px;
+    width: 100%;
+  }
+  &__link {
+    display: block;
+    font-size: 10px;
+    font-size: 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: $secondary;
+    margin-left: 3px;
+    @include responsive($mobileL, 'min') {
+      margin-left: 4px;
+      font-size: 16px;
+    }
   }
   &__btn {
-    margin-left: 10px;
-    width: 26px;
-    height: 26px;
+    flex-shrink: 0;
+    margin-right: 0px;
+    width: 26px !important;
+    height: 26px !important;
     background-color: white;
     border: 1px solid $secondary;
     position: relative;
@@ -280,6 +668,8 @@
       position: absolute;
       top: 0px;
       left: 0px;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       object-position: center;
       pointer-events: none;
@@ -294,16 +684,14 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   justify-content: center;
   user-select: none;
 
   &__title {
     font-size: 18px;
     text-decoration: none;
-    text-align: right;
     color: $secondary;
-    @include responsive($mobileL) {
+    @include responsive($mobileL, 'min') {
       font-size: 27px;
     }
 
@@ -312,7 +700,7 @@
       color: $secondaryAlfa;
       display: flex;
       user-select: none;
-      @include responsive($mobileL) {
+      @include responsive($mobileL, 'min') {
         font-size: 18px;
       }
     }
@@ -321,32 +709,10 @@
       width: 100%;
       margin-bottom: 5px;
       display: flex;
+
       align-items: flex-end;
       justify-content: space-between;
       border-bottom: 1px solid $secondaryAlfa;
-    }
-  }
-
-  &__tag {
-    font-size: 14px;
-    background-color: $secondary;
-    color: $primary;
-    margin-left: 5px;
-    margin-top: 5px;
-    padding: 5px 10px;
-    &:first-of-type {
-      margin-left: 0;
-    }
-
-    @include responsive($mobileL) {
-      padding: 7px 14px;
-      font-size: 16px;
-    }
-    &_container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      user-select: none;
     }
   }
 
@@ -356,9 +722,9 @@
     margin-top: 10px;
     font-size: 14px;
     font-weight: 300;
-    color: $secondaryAlfa;
+    color: $secondary;
 
-    @include responsive($mobileL) {
+    @include responsive($mobileL, 'min') {
       font-size: 16px;
     }
   }
@@ -376,14 +742,14 @@
       width: 100%;
       max-width: $mobileL;
       height: 350px;
-      margin-left: auto;
+      margin-right: auto;
       color: white;
       overflow: hidden;
 
-      @include responsive($tablet) {
+      @include responsive($tablet, 'min') {
         height: 500px;
       }
-      @include responsive($laptopL) {
+      @include responsive($laptopL, 'min') {
         height: 700px;
       }
     }
@@ -400,7 +766,7 @@
     &_btn {
       color: $secondary;
       position: absolute;
-      right: 10px;
+      left: 0px;
       cursor: pointer;
       font-size: 12px;
       text-transform: uppercase;
