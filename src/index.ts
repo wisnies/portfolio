@@ -469,17 +469,26 @@ class App implements IApp {
     projects.forEach((p) => this.DOM.projectsPage.slider.appendChild(p));
   };
   private drawOverlay = () => {
-    for (let i = 0; i < 48; i++) {
-      const row = document.createElement('div');
-      row.classList.add('row');
-      row.classList.add(`row-${i}`);
-      for (let j = 0; j < 48; j++) {
-        const col = document.createElement('div');
-        col.classList.add('col');
-        col.classList.add(`col-${j}`);
-        row.appendChild(col);
+    for (let i = 0; i < 50; i++) {
+      const strip = document.createElement('div');
+      strip.classList.add('strip');
+      strip.classList.add(`strip-${i}`);
+      const inner = document.createElement('div');
+      inner.classList.add('strip__inner');
+      const fill = document.createElement('div');
+      fill.classList.add('strip__fill');
+      strip.appendChild(fill);
+      strip.appendChild(inner);
+      if (i > 4 && i <= 20) {
+        strip.classList.add('strip--top');
       }
-      this.DOM.overlay.appendChild(row);
+      if (i > 20 && i <= 28) {
+        strip.classList.add('strip--middle');
+      }
+      if (i > 28 && i <= 40) {
+        strip.classList.add('strip--bottom');
+      }
+      this.DOM.overlay.appendChild(strip);
     }
   };
 

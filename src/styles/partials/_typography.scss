@@ -58,15 +58,4 @@
       font-size: 18px;
     }
   }
-  &--contact {
-    margin-left: 20px;
-    font-size: 10px;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: $secondary;
-    border: 1px solid red;
-    @include responsive($mobileL, 'min') {
-      font-size: 16px;
-    }
-  }
 }

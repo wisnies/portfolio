@@ -24,3 +24,18 @@
     }
   }
 }
+
+@mixin stripInner($width, $start, $stop) {
+  .strip__inner {
+    margin-left: auto;
+    width: $width;
+    background-color: transparent;
+    background: linear-gradient(
+      to right,
+      $primary 0%,
+      transparent $start,
+      $primary $stop,
+      $primary 100%
+    ) !important;
+  }
+}
