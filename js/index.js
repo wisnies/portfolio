@@ -102,6 +102,13 @@ const projects = [
             'RWD',
         ],
     },
+    {
+        title: 'Niebieska Mrówka',
+        year: 2020,
+        deployed: 'https://niebieska-mrowka.pl/',
+        githubRepo: null,
+        tags: ['HTML', 'CSS', 'JavaScript', 'PHP', 'SQL', 'RWD'],
+    },
 ];
 class App {
     constructor() {
