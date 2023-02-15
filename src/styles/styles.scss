@@ -592,9 +592,6 @@ body {
       @include responsive($tablet, 'min') {
         height: 500px;
       }
-      @include responsive($laptopL, 'min') {
-        height: 700px;
-      }
     }
 
     &_slider {

@@ -797,11 +797,6 @@ body {
     height: 500px;
   }
 }
-@media screen and (min-width: 1440px) {
-  .project__carousel_container {
-    height: 700px;
-  }
-}
 .project__carousel_slider {
   display: flex;
   flex-direction: column;

@@ -186,6 +186,13 @@ const projects: Project[] = [
       'RWD',
     ],
   },
+  {
+    title: 'Niebieska Mrówka',
+    year: 2020,
+    deployed: 'https://niebieska-mrowka.pl/',
+    githubRepo: null,
+    tags: ['HTML', 'CSS', 'JavaScript', 'PHP', 'SQL', 'RWD'],
+  },
 ];
 
 interface IApp {
