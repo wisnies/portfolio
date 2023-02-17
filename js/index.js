@@ -43,7 +43,7 @@ const projects = [
     {
         title: 'Skin Care (work in progress)',
         year: 2023,
-        deployed: 'https://skin-care-wfe2-n21g3ihuw-mateuszwisniewskikonto-gmailcom.vercel.app/',
+        deployed: 'https://skin-care-wisnies.vercel.app/',
         githubRepo: null,
         tags: [
             'Next.js',
@@ -58,7 +58,7 @@ const projects = [
     {
         title: 'Feast BBQ',
         year: 2023,
-        deployed: 'https://feast-6ce2tes3j-mateuszwisniewskikonto-gmailcom.vercel.app/',
+        deployed: 'https://feast-wisnies.vercel.app/',
         githubRepo: 'https://github.com/wisnies/feast',
         tags: [
             'Next.js',
