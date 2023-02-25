@@ -19,7 +19,7 @@ const locale = {
         about: {
             title: { en: 'Who am I', pl: 'Kim jestem' },
             desc: {
-                en: 'Self taught, ambition driven. Always lookig learn to and improve.',
+                en: 'Self taught, ambition driven. Always looking learn to and improve.',
                 pl: 'Ambitny samouk, zawsze chętny do nauki i rozwoju umiejętności',
             },
             skillsTitle: { en: 'What I can do', pl: 'Co potrafię' },
